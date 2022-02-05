@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<script>
+function drag(ev) {
+  ev.dataTransfer.setData("text", ev.target.id);
+}
+function allowDrop(ev) {
+  ev.preventDefault();
+}
+function drop(ev) {
+  ev.preventDefault();
+  var data = ev.dataTransfer.getData("text");
+  ev.target.appendChild(document.getElementById(data));
+}
+</script>
+<style>
+#baby {
+  z-index: 1;
+}
+#bench {
+  z-index: 0;
+}
+body {
+  background-color: pink;
+}
+</style>
+</head>
+<body>
+<div>
+<center><div><img src= "baby.gif" draggable="true" ondragstart="drag(event)" id="baby"></div></center>
+<center><div ondrop="drop(event)" id="bench" ondragover="allowDrop(event)"><img src="bench.jpg"></div></center>
+</div>
+<center>  <center>
+ <audio id="player" src="denguefever.ogg"></audio>
+<center><div>
+    <button onclick="document.getElementById('player').play()">Play</button>
+    <button onclick="document.getElementById('player').pause()">Pause</button>
+    <button onclick="document.getElementById('player').muted=!document.getElementById('player').muted">Mute/Unmute</button>
+</div></center>
+<center>Music by Dengue Fever</center>
+</body>
+</html>
+
